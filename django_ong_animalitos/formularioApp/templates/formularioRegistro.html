@@ -1,0 +1,314 @@
+<!-- * Esta Actividad es grupal
+* Debes crear un proyecto y utilizar Git como repositorio local. Durante  la actividad debes  realizar constantes actualizaciones del repositorio. Anota todos los pasos y comandos que realizas.
+*Utiliza el proyecto desarrollado en la actividad 2.2 y trabaja las validaciones con jQuery y selectores.
+1. Crear un formulario de postulación para el trabajo de apoyo ambiental para Chiloé.
+2. Los campos del formulario son: *rut*, apellido paterno, apellido materno, nombre, *fecha de nacimiento*, *edad*, *género*, email, celular, *profesión*, *motivación el por que quieres adoptar*.
+3. Realizar con JQueryy uso de selectores las siguientes validaciones a los campos del formulario:
+a. Rut: largo entre 9 y 10 caracteres.
+b. Nombre: largo entre 3 y 20 caracteres.
+c. Apellido paterno: largo entre 3 y 20 caracteres.
+d. Apellido materno: largo entre 3 y 20 caracteres.
+e. Edad: entre 18 y 35 años.
+f. Género: que sea seleccionado un género de la lista.
+g. Celular: largo entre 9 y 12.
+4. * Todos los campos son requeridos. 
+5. Debe utilizar los siguientes componentes: Text, number, date, select, textarea.
+6. Debe haber un botón submit “Enviar”.
+7. Debe haber un botón submit “Crear Carta”.  Este botón llama a una función que genera una carta de presentación e intención para postular a la adopcion.  Usted debe concatenar los datos ingresados en el formularios y generar un texto correspondiente a su carta, el que será asignado al campo textarea con el id=”carta”.
+8. Los formatos de CSS los debe crear en un archivo externo.
+9. Crear la estructura del proyecto en GitHub, todos los integrantes deben descargar el proyecto y trabajar cada uno en forma separada en el formulario, JQuery y CSS. Cada uno debe actualizar el repositorio para complementar el proyecto y probar su funcionamiento.  -->
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+  Formulario Registro
+{% endblock %}
+
+{% block content %}
+  <body class="body-main">
+    <div class="container-fluid">
+      <div class="row mt-3">
+        <div class="header d-flex flex-column justify-content-center align-items-center">
+          <h1>Registrar usuario</h1>
+        </div>
+      <div class="row m-1">
+        <!--Caja completa para centrar formulario-->
+        <div class="container-fluid m-1">
+          <!-- Centrando formularo con container-fluid -->
+          <div class="container-fluid row mt-1 justify-content-center">
+            <div class="col-md-8  m-3">
+              <form action="" class="row g-3 border border-dark-subtle fondo-panel-interior p-2">
+
+                <!--NOMBRE-->
+                <div class="col-md-6 mx-auto m-2">
+                  <label for="nombrePersonas">Nombre:</label>
+                  <input type="text" class="form-control is-invalid" placeholder="Nombre" aria-label="nombreFormulario"
+                    id="nombrePersonas" />
+                  <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                    Porfavor ingresar un nombre entre 3 y 20 caracteres
+                  </div>
+                </div>
+
+                <!--APPATERNO-->
+                <div class="col-md-6 mx-auto m-2">
+                  <label for="apellidoPaPersonas">Apellido:</label>
+                  <input type="text" class="form-control is-invalid" placeholder="Apellido"
+                    aria-label="apellido1Formulario" id="apellidoPaPersonas" />
+                  <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                    Porfavor ingresar un apellido entre 3 y 20 caracteres
+                  </div>
+                </div>
+
+                <!--APMATERNO-->
+                <div class="col-md-6 mx-auto m-2">
+                  <label for="apellidoMaPersonas">Apellido:</label>
+                  <input type="text" class="form-control is-invalid" placeholder="Apellido"
+                    aria-label="apellido2Formulario" id="apellidoMaPersonas" />
+                  <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                    Porfavor ingresar un apellido entre 3 y 20 caracteres
+                  </div>
+                </div>
+
+                <!--RUT-->
+                <div class="col-md-6 mx-auto m-2">
+                  <label for="rutPersonas">RUT:</label>
+                  <input type="text" class="form-control is-invalid" placeholder="123456789" aria-label="rutFormulario"
+                    id="rutPersonas" />
+                  <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                    Porfavor ingresar un RUT entre 9 y 10 caracteres
+                  </div>
+                </div>
+
+                <!--FECHA NACIMIENTO-->
+                <div class="col-md-8 mx-auto m-2">
+                  <label for="fechaNacPersonas" class="form-label">Fecha Nacimiento:</label>
+                  <div class="input-group has-validation"></div>
+                  <input type="date" class="form-control is-invalid" name="fecha" id="fechaNacPersonas" />
+                  <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                    Porfavor ingresar una fecha
+                  </div>
+                </div>
+
+                <!--EDAD-->
+                <div class="col-md-4 mx-auto m-2">
+                  <label for="edadPersonas" class="form-label">Edad</label>
+                  <div class="input-group has-validation">
+                    <input type="number" class="form-control is-invalid" placeholder="***" id="edadPersonas"
+                      aria-describedby="validationServerUsernameFeedback" />
+                    <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                      Porfavor ingresar edad entre 18 y 35 años
+                    </div>
+                  </div>
+                </div>
+
+
+                <!--PROFESION-->
+                <div class="col-md-8 mx-auto m-2">
+                  <label for="profesionPersonasSpan" class="form-label">Profesión:</label>
+                  <div class="input-group has-validation">
+                    <span class="input-group-text" id="profesionPersonasSpan">🎓</span>
+                    <input type="text" class="form-control is-invalid" placeholder="Ingrese Profesión"
+                      aria-label="profFormulario" id="profesionPersonas"
+                      aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" />
+                    <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                      Porfavor ingresar una profesion
+                    </div>
+                  </div>
+                </div>
+
+                <!--GENERO-->
+                <div class="col-md-4 mx-auto m-2">
+                  <label for="inputGenderPersonasSpan" class="form-label">Genero</label>
+                  <div class="input-group has-validation">
+                    <span class="input-group-text" id="inputGenderPersonasSpan">💬</span>
+                    <select class="form-select is-invalid" placeholder="Seleccionar..." id="inputGenderPersonas"
+                      aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback">
+                      <option value="">Seleccionar...</option>
+                      <option value="Masculino">Masculino</option>
+                      <option value="Femenino">Femenino</option>
+                      <option value="NoEstoySeguro">No estoy seguro</option>
+                      <option value="PrefieroNoDecir">Prefiero no decir</option>
+                      <option value="Otro">Otro...</option>
+                    </select>
+                    <div id="validationRegionPersonasDiv" class="invalid-feedback">
+                      Porfavor clickear una selección
+                    </div>
+                  </div>
+                </div>
+
+                <!--MAIL-->
+                <div class="col-md-8 mx-auto m-2">
+                  <label for="inputEmailPersonasSpan" class="form-label">E-Mail</label>
+                  <div class="input-group has-validation">
+                    <span class="input-group-text" id="inputEmailPersonasSpan">📧</span>
+                    <input type="email" class="form-control is-invalid" placeholder="ejemplo@ejemplo.com"
+                      id="inputEmailPersonas" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" />
+                    <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                      Porfavor ingresar un correo válido 15-100 carácteres
+                    </div>
+                  </div>
+                </div>
+
+                <!--CELULAR-->
+                <div class="col-md-4 mx-auto m-2">
+                  <label for="telefonoPersonasSpan" class="form-label">Celular</label>
+                  <div class="input-group has-validation">
+                    <span class="input-group-text" id="telefonoPersonasSpan">📱</span>
+                    <input type="number" class="form-control is-invalid" placeholder="+56912345678" id="telefonoPersonas"
+                      aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" />
+                    <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                      Porfavor ingresar un celular de largo entre 9 y 12 numeros
+                    </div>
+                  </div>
+                </div>
+
+                <!--DIRECCION-->
+                <div class="col-md-12 mx-auto m-2">
+                  <label for="inputDirecPersonas" class="form-label">Dirección:</label>
+                  <input type="text" class="form-control is-invalid" placeholder="1234 Calle Principal"
+                    aria-label="direc1Formulario" id="inputDirecPersonas" />
+                  <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                    Porfavor ingresar una dirección
+                  </div>
+                </div>
+
+                <!--TIPO DE VIVIENDA-->
+                <div class="col-md-12 mx-auto m-2">
+                  <label for="inputDirecPersonas2" class="form-label">Direccion 2:</label>
+                  <input type="text" class="form-control is-invalid" placeholder="Departamento, oficina, casa..."
+                    aria-label="direc2Formulario" id="inputDirecPersonas2" />
+                  <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                    Porfavor ingresar tipo de direccion
+                  </div>
+                </div>
+
+                <!--REGION-->
+                <div class="col-md-6 mx-auto m-2">
+                  <label for="inputRegionPersonas" class="form-label">Región</label>
+                  <div class="input-group has-validation">
+                    <select class="form-select is-invalid" placeholder="Seleccionar..." id="inputRegionPersonas"
+                      aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback">
+                      <option value="">Seleccionar...</option>
+                      <option value="Valparaiso">Valparaiso</option>
+                      <option value="Metropolitana">Metropolitana</option>
+                      <option value="OHiggins">O'Higgins</option>
+                      <option value="LaAraucania">La Araucania</option>
+                    </select>
+                    <div id="validationRegionPersonasDiv" class="invalid-feedback">
+                      Porfavor clickear una selección
+                    </div>
+                  </div>
+                </div>
+
+                <!--COMUNA-->
+                <div class="col-md-4 mx-auto m-2">
+                  <label for="inputComunaPersonas" class="form-label">Comuna</label>
+                  <div class="input-group has-validation">
+                    <select class="form-select is-invalid" placeholder="Seleccionar..." id="inputComunaPersonas"
+                      aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback">
+                      <option value="">Seleccionar...</option>
+                      <option value="Limache">Limache</option>
+                      <option value="Quillota">Quillota</option>
+                      <option value="ViñaDelMar">Viña Del Mar</option>
+                      <option value="Olmue">Olmué</option>
+                    </select>
+                    <div id="validationComunaPersonasDiv" class="invalid-feedback">
+                      Porfavor clickear una selección
+                    </div>
+                  </div>
+                </div>
+
+                <!--CODIGO POSTAL-->
+                <div class="col-md-2 mx-auto m-2">
+                  <label for="inputCodPostalPersonas" class="form-label">Codigo Postal</label>
+                  <input type="number" class="form-control is-invalid" placeholder="*****" id="inputCodPostalPersonas"
+                    aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" />
+                  <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                    Porfavor ingresar su codigo postal
+                  </div>
+                </div>
+
+                <!--MOTIVACIÓN-->
+                <div class="col-md-12 container m-1 ">
+                  <label for="motivacionTexto">🐶Cuentanos que te motiva querer adoptar🐶 </label>
+                  <textarea class="form-control" id="motivacionTexto" rows="4" cols="50">
+                          </textarea>
+                </div>
+                <!--CHECK BOX-->
+                <div class="col-md-12 container m-1">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gridCheckPersonas" />
+                    <label class="form-check-label" for="gridCheckPersonas">
+                      Recibir correos
+                    </label>
+                  </div>
+
+                </div>
+
+                <!--BOTON REGISTRO-->
+                <div class="d-flex flex-row">
+                  <div class="p-2">
+                    <button type="button" id="idButtonEnviarPersonas" class="btn btn-formulario"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modalPersonasEnviar" 
+                    onclick="traerDatosModalPersonas()"
+                    disabled>Enviar</button>
+                  </div>
+                  <div class="p-2">
+                    <button type="button" class="btn btn-formulario-carta" 
+                      data-bs-toggle="modal"
+                      data-bs-target="#modalPersonas" onclick="traerDatosModalPersonas()">
+                      Ver Carta
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade " id="modalPersonas" tabindex="-1" aria-labelledby="modalPersonasLabel"
+                      aria-hidden="true">
+                      <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="modalPersonasLabel">Vista previa carta</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body" id="divModalPersonas">
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Button trigger modal -->
+                  <!-- Modal -->
+                  <div class="modal fade" id="modalPersonasEnviar" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel"><i
+                              class="ms-3 bi bi-info-square-fill info me-3"></i>Información</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id="divModalPersonasEnviar">
+                          
+                        </div>
+                        <div class="modal-footer">
+                          <a href="index.html"><button type="button" class="btn btn-formulario">Continuar</button></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </form>
+            </div>
+
+          </div>
+        </div>
+
+
+
+      </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+      <script src="{% static 'controlador/modalPersonas.js' %}"></script>
+      <script src="{% static 'controlador/validateFormRegistro.js' %}"></script>
+  </body>
+{% endblock %}
