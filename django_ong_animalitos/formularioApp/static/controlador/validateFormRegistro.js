@@ -46,10 +46,6 @@ $(document).ready(function() {
 
         }
         
-            
-                
-            
-        
 
         // Revisar si se activa la flag
         if(flag){
